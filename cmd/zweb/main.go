@@ -27,11 +27,15 @@ func init() {
 func main() {
 	flag.Parse()
 
+	extentions := strings.Split(*ext, ",")
+	for i := range extentions {
+		extentions[i] = "." + extentions[i]
+	}
 	c := zweb.Config{
 		DefaultLang:         *defaultLanguage,
 		Dir:                 *dir,
 		OutDir:              *outDir,
-		TemplateExt:         strings.Split(*ext, ","),
+		TemplateExt:         extentions,
 		DisableLangAutoSync: *disableLangAutoSync,
 	}
 	s := zweb.New(c)
